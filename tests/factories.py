@@ -21,14 +21,25 @@ import factory
 from factory.fuzzy import FuzzyChoice, FuzzyDecimal
 from service.models import Product, Category
 
+class CategoryFactory(factory.Factory):
+    """Creates fake categories for testing"""
+
+    class Meta:
+        model = Category
+
+    name = factory.Faker('word')
 
 class ProductFactory(factory.Factory):
     """Creates fake products for testing"""
 
     class Meta:
-        """Maps factory to data model"""
-
         model = Product
 
-    id = factory.Sequence(lambda n: n)
-   ## Add code to create Fake Products 
+    name = factory.Faker('sentence')
+    description = factory.Faker('paragraph')
+    price = FuzzyDecimal(1.0, 100.0)
+    category = factory.SubFactory(CategoryFactory)
+
+# Usage example:
+# product = ProductFactory()
+
