@@ -40,6 +40,6 @@ class ProductFactory(factory.Factory):
     price = FuzzyDecimal(1.0, 100.0)
     category = factory.SubFactory(CategoryFactory)
 
-# Usage example:
+# Usage example: 
 # product = ProductFactory()
 
